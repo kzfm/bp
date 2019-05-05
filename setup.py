@@ -6,7 +6,7 @@ with open('README.md') as readme_file:
     long_description = readme_file.read()
 
 setup(name='bp',
-      version='0.1.0',
+      version='0.2.0',
       description='CLI tool for recording the blood pressure',
       long_description=long_description,
       author='Kazufumi Ohkawa',

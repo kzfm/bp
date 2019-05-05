@@ -29,13 +29,19 @@ class BloodPressure(Base):
         self.diastolic =k["diastolic"]
         self.systolic =k["systolic"]
 
+
+@click.group()
+def cmd():
+    pass
+
+@cmd.command()
 def init():
     Base.metadata.create_all(bind=engine)
 
-@click.command()
+@cmd.command()
 @click.argument("n1")
 @click.argument("n2")
-def cmd(n1, n2):
+def add(n1, n2):
     if n2 > n1:
         sys = n2
         dia = n1
@@ -45,6 +51,19 @@ def cmd(n1, n2):
     bp = BloodPressure(diastolic=dia, systolic=sys)
     db_session.add(bp)
     db_session.commit()
+
+@cmd.command()
+def show():
+    import seaborn as sns
+    import pandas as pd
+    from matplotlib import pyplot as plt
+    sns.set(style="darkgrid")
+    df = pd.read_sql_query(sql="SELECT date, diastolic, systolic from bp", con=engine)
+    fig, ax = plt.subplots()
+    sns.lineplot(data=df, x="date", y="diastolic")
+    sns.lineplot(data=df, x="date", y="systolic")
+    fig.autofmt_xdate()
+    plt.show()
 
 
 if __name__ == "__main__":

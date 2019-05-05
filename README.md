@@ -8,13 +8,16 @@ CLI tool for recording your blood pressure
 
 ## Create database
 
-    $ python
-    >>> from bp import init
-    >>> init()
+    $ bp init
     # create ~/mybp.db
 
 ## How to use 
 
-    bp 76 138
-    bp 138 76
+    bp add 76 138
+    bp add 138 76
     # both is OK
+
+## Show your data
+
+    bp show
+    # display seaborn graph
