@@ -26,8 +26,8 @@ class BloodPressure(Base):
     date = Column(DateTime, default=datetime.now())
 
     def __init__(self, **k):
-        self.diastolic =k["diastolic"]
-        self.systolic =k["systolic"]
+        self.diastolic = k["diastolic"]
+        self.systolic = k["systolic"]
 
 
 @click.group()
@@ -39,8 +39,8 @@ def init():
     Base.metadata.create_all(bind=engine)
 
 @cmd.command()
-@click.argument("n1")
-@click.argument("n2")
+@click.argument("n1", type=int)
+@click.argument("n2", type=int)
 def add(n1, n2):
     if n2 > n1:
         sys = n2
