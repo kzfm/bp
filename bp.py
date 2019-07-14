@@ -66,5 +66,11 @@ def show():
     plt.show()
 
 
+@cmd.command()
+def list():
+    for bp in BloodPressure.query.order_by(BloodPressure.date.desc()).limit(30):
+        print("{0:%Y/%m/%d %H:%M}\t{1}\t{2}".format(bp.date, bp.diastolic, bp.systolic))
+
+
 if __name__ == "__main__":
     cmd()
