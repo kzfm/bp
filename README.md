@@ -4,7 +4,7 @@ CLI tool for recording your blood pressure
 
 ## Install
     
-    pip install .
+    pip install -e .
 
 ## Create database
 
